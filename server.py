@@ -39,7 +39,7 @@ def say_hello():
         <form action="/greet">
           What's your name? <input type="text" name="person">
           Select a compliment
-            <select name="compliment">
+            <select name="greeting">
               <option>awesome</option>
               <option>terrific</option>
               <option>fantastic</option>
@@ -47,9 +47,9 @@ def say_hello():
             </select>
           <input type="submit" value="Submit">
         </form>
-        <form action="/diss">
+        <form action="/greet">
           Select an insult
-            <select name="insult">
+            <select name="greeting">
               <option>terrible</option>
               <option>baldheaded</option>
               <option>awful</option>
@@ -61,14 +61,13 @@ def say_hello():
     </html>
     """
 
-
 @app.route('/greet')
 def greet_person():
     """Get user by name."""
 
     player = request.args.get("person")
 
-    compliment = request.args.get("compliment")
+    greeting = request.args.get("greeting")
 
     return """
     <!doctype html>
@@ -80,7 +79,8 @@ def greet_person():
         Hi, {}! I think you're {}!
       </body>
     </html>
-    """.format(player, compliment)
+    """.format(player, greeting)
+
 
 @app.route('/diss')
 def diss_person():
